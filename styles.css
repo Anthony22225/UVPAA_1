@@ -429,6 +429,14 @@ figcaption span { color: var(--orange); font-size: 12px; }
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
+.atom-palette .mini-label { font-size: 8px; }
+.atom-palette .atom-source { font-size: 21px; }
+.atom-palette .atom-source small { font-size: 5px; }
+.atom-palette .bond-choice { font-size: 9px; }
+.atom-palette .bond-choice span { font-size: 15px; }
+.atom-palette .molecule-controls .mark-group-button { font-size: 9px; }
+.atom-palette .molecule-controls .text-button { font-size: 10px; }
+
 .chapter-link:hover { background: #e9eef3; }
 .chapter-link.is-active { background: #e4ebf2; }
 .chapter-link.is-complete .chapter-check { border-color: #6984a0; background: #6984a0; }
