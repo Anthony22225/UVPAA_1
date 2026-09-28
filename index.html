@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f3f5f7">
+    <meta name="description" content="Explore what happens to dissolved organic matter during ultraviolet and peracetic acid wastewater treatment.">
+    <title>Water, radicals &amp; change — UV/PAA field guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#start-page">Skip to lesson</a>
+    <header class="site-header">
+      <a class="brand" href="#start-page" aria-label="DOM in UV/PAA Treatment — start page">
+        <span class="brand-mark" aria-hidden="true">W<span>·</span></span>
+        <span>DOM in UV/PAA Treatment</span>
+      </a>
+      <button class="sound-toggle" type="button" aria-label="Motion preference follows your device settings">
+        <span aria-hidden="true">◌</span>
+      </button>
+    </header>
+
+    <main id="start-page" class="start-page" aria-labelledby="start-title">
+      <div class="start-content">
+        <p class="eyebrow">AN INTERACTIVE FIELD GUIDE <span class="header-divider">/</span> UV + PAA</p>
+        <h1 id="start-title" tabindex="-1">How does Dissolved Organic Matter (DOM) change during UV/PAA treatment?</h1>
+        <p class="start-dek">Explore the water, the chemistry, and the transformations that happen during treatment.</p>
+        <p class="start-list-label">IN THIS FIELD GUIDE</p>
+        <ol class="start-chapters">
+          <li><span>01</span> What Is in Wastewater?</li>
+          <li><span>02</span> What Makes Peracetic Acid (PAA) Special?</li>
+          <li><span>03</span> How Does UV/PAA Treatment Work?</li>
+          <li><span>04</span> Who Uses the Oxidants?</li>
+          <li><span>05</span> How Does DOM Change During UV/PAA Treatment?</li>
+          <li><span>06</span> Can You Explain the Whole Process?</li>
+        </ol>
+        <button id="start-course" class="primary-button start-button" type="button">Start <span aria-hidden="true">→</span></button>
+      </div>
+    </main>
+
+    <div class="site-layout" id="course-layout" hidden>
+      <aside class="chapter-rail" aria-label="Chapter navigation">
+        <p class="rail-label">YOUR FIELD NOTES</p>
+        <nav id="chapter-nav" aria-label="Chapters">
+          <button class="chapter-link is-active" type="button" data-chapter="0" aria-current="step"><span class="chapter-number">01</span><span>What is in wastewater?</span><span class="chapter-check" aria-hidden="true"></span></button>
+          <button class="chapter-link" type="button" data-chapter="1"><span class="chapter-number">02</span><span>Meet peracetic acid</span><span class="chapter-check" aria-hidden="true"></span></button>
+          <button class="chapter-link" type="button" data-chapter="2"><span class="chapter-number">03</span><span>Switch on the light</span><span class="chapter-check" aria-hidden="true"></span></button>
+          <button class="chapter-link" type="button" data-chapter="3"><span class="chapter-number">04</span><span>A competition for radicals</span><span class="chapter-check" aria-hidden="true"></span></button>
+          <button class="chapter-link" type="button" data-chapter="4"><span class="chapter-number">05</span><span>DOM changes shape</span><span class="chapter-check" aria-hidden="true"></span></button>
+          <button class="chapter-link" type="button" data-chapter="5"><span class="chapter-number">06</span><span>Put the story together</span><span class="chapter-check" aria-hidden="true"></span></button>
+        </nav>
+        <div class="rail-progress" aria-label="Course progress">
+          <div class="rail-progress-top"><span>FIELD GUIDE</span><span id="progress-label">01 / 06</span></div>
+          <div class="progress-track"><span id="progress-fill"></span></div>
+          <p>One small molecule.<br>A whole lot of change.</p>
+        </div>
+      </aside>
+
+      <main id="main" tabindex="-1">
+        <div class="page-topline"><span id="chapter-kicker">THE MIXTURE</span><span>UV / PAA TREATMENT <span aria-hidden="true">↗</span></span></div>
+
+        <section class="chapter is-visible" id="chapter-1" aria-labelledby="title-1" data-kicker="THE MIXTURE">
+          <div class="chapter-heading"><p class="eyebrow"><span class="eyebrow-index">01</span> START WITH THE WATER</p><h1 id="title-1">What is in<br><em>wastewater?</em></h1><p class="dek">Every drop of wastewater contains a mixture of substances. Some are pollutants that can harm ecosystems or human health, while others are dissolved organic matter (DOM), a mixture of complex, soluble organic molecules and colloids. To protect our oceans, we need to eliminate pollutants in wastewater before discharge.</p></div>
+          <div class="chapter-figures chapter-figures-3" role="region" aria-label="Chapter 1 illustrations; scroll horizontally to view each image" tabindex="0">
+            <figure><button class="image-open" type="button" data-image="IMG-01" aria-label="Open illustration IMG-01: a mixed wastewater sample"><img src="assets/IMG-01.png" alt="A wastewater sample containing water, dissolved organic matter, and several pollutant types."></button><figcaption><span>FIG. 01</span> A complicated mixture, in one glass.</figcaption></figure>
+            <figure><button class="image-open" type="button" data-image="IMG-02" aria-label="Open illustration IMG-02: sources of dissolved organic matter"><img src="assets/IMG-02.png" alt="Decaying leaves, animal tissue, and microbes contribute organic matter to water."></button><figcaption><span>FIG. 02</span> Where DOM begins</figcaption></figure>
+            <figure><button class="image-open" type="button" data-image="IMG-03" aria-label="Open illustration IMG-03: target pollutants"><img src="assets/IMG-03.png" alt="Examples of target pollutants: nutrients, heavy metals, and organic chemicals."></button><figcaption><span>FIG. 03</span> What treatment targets</figcaption></figure>
+          </div>
+          <section class="game-card" aria-labelledby="game1-title">
+            <div class="game-heading"><span class="game-tag">GAME-01 <span aria-hidden="true">✳</span> SORT THE SAMPLE</span><span class="game-count" id="game1-progress">0 / 6 sorted</span></div>
+            <h2 id="game1-title">Who contributes to which group?</h2><p class="game-instructions">Drag each sample into a bin, or select a sample and then choose a bin. Get all six right to finish.</p>
+            <div class="sorting-game">
+              <div class="sample-tray"><p class="mini-label">THE SAMPLE TRAY</p><div id="sample-items" class="sample-items"></div></div>
+              <div class="sorting-bins">
+                <button class="sort-bin dom-bin" type="button" data-bin="dom" aria-label="Sort as dissolved organic matter"><span class="bin-icon" aria-hidden="true">⌁</span><strong>Dissolved organic matter</strong><span>From once-living material</span><span class="bin-drop">DROP OR CHOOSE</span><span class="bin-items" id="dom-items"></span></button>
+                <button class="sort-bin pollutant-bin" type="button" data-bin="pollutant" aria-label="Sort as a target pollutant"><span class="bin-icon" aria-hidden="true">◎</span><strong>Anthropogenic Pollutants</strong><span>Substances to reduce or remove</span><span class="bin-drop">DROP OR CHOOSE</span><span class="bin-items" id="pollutant-items"></span></button>
+              </div>
+            </div>
+            <p class="game-feedback" id="game1-feedback" aria-live="polite">Choose a sample to get started.</p>
+            <button class="text-button" id="game1-reset" type="button">↺ Start this activity over</button>
+          </section>
+          <div class="chapter-summary"><span>CHAPTER SUMMARY</span><p>Untreated wastewater contains both pollutants and dissolved organic matter. Pollutants must be removed before wastewater can be safely discharged to the environment.</p></div>
+        </section>
+
+        <section class="chapter" id="chapter-2" aria-labelledby="title-2" data-kicker="THE REAGENT">
+          <div class="chapter-heading"><p class="eyebrow"><span class="eyebrow-index">02</span> A REACTIVE LITTLE REAGENT</p><h1 id="title-2">Meet <em>peracetic acid.</em></h1><p class="dek">Peracetic acid (PAA) is a powerful oxidant used in water treatment. An Advanced Oxidation Process (AOP) is a treatment method that produces highly reactive species capable of breaking down contaminants.<br><br>PAA contains a peroxyacid group (−COOOH). Compared with ethanoic acid (CH₃COOH), PAA contains one additional oxygen atom and an oxygen-oxygen peroxide bond. This weak peroxide bond requires less energy to break and makes PAA much more reactive than ethanoic acid.</p></div>
+          <div class="chapter-figures chapter-figures-1" aria-label="Chapter 2 illustration">
+            <figure><button class="image-open" type="button" data-image="IMG-05" aria-label="Open illustration IMG-05: compare ethanoic acid and peracetic acid"><img src="assets/IMG-05.png" alt="Structural comparison: ethanoic acid CH3-C(=O)-OH and peracetic acid CH3-C(=O)-O-OH, with the peroxide O-O bond highlighted."></button><figcaption><span>FIG. 05</span> Same family. One extra O–O bond.</figcaption></figure>
+          </div>
+          <section class="game-card" aria-labelledby="game2-title">
+            <div class="game-heading"><span class="game-tag">GAME-02 <span aria-hidden="true">✳</span> BUILD A MOLECULE</span><span class="game-count">ATOM BY ATOM</span></div>
+            <h2 id="game2-title">Can you assemble CH<sub>3</sub>COOOH?</h2><p class="game-instructions">Drag atoms into the nine boxes—one atom per box. Choose a bond, then select two filled boxes to connect them. Build the full molecule, including every hydrogen. Finally, mark the –COOOH group.</p>
+            <div class="molecule-workbench">
+              <div class="atom-palette"><p class="mini-label">DRAG AN ATOM INTO A BOX</p><div class="atom-buttons"><button type="button" class="atom-source" draggable="true" data-atom="C" aria-label="Carbon atom, drag into an empty box">C <small>CARBON</small></button><button type="button" class="atom-source oxygen-atom" draggable="true" data-atom="O" aria-label="Oxygen atom, drag into an empty box">O <small>OXYGEN</small></button><button type="button" class="atom-source hydrogen-atom" draggable="true" data-atom="H" aria-label="Hydrogen atom, drag into an empty box">H <small>HYDROGEN</small></button></div><p class="mini-label bond-label">CHOOSE A BOND</p><div class="bond-buttons"><button type="button" class="bond-choice is-selected" data-bond="1" aria-pressed="true">Single <span>—</span></button><button type="button" class="bond-choice" data-bond="2" aria-pressed="false">Double <span>=</span></button></div><div class="molecule-controls"><button class="mark-group-button" id="mark-group" type="button" aria-pressed="false">Mark Functional group</button><button class="text-button remove-molecule-item" id="remove-molecule-item" type="button">Remove selected atom or bond</button><button class="text-button" id="molecule-reset" type="button">Clear grid</button></div></div>
+              <div class="molecule-grid-wrap"><svg id="molecule-grid" class="molecule-grid" viewBox="0 0 600 330" role="group" aria-label="Nine empty atom boxes arranged as the peracetic acid structure. Drag atoms into boxes, then connect atoms with bonds." tabindex="0"><defs><pattern id="molecule-dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#d7dbd5"/></pattern></defs><rect width="600" height="330" fill="url(#molecule-dots)"/></svg><p id="game2-success" class="game2-success" aria-live="polite" hidden>success!</p><div class="molecule-grid-hint"><p id="molecule-feedback" class="game-feedback" aria-live="polite">Drag 2 carbon, 3 oxygen, and 4 hydrogen atoms into the boxes.</p></div></div>
+            </div>
+          </section>
+          <div class="video-card"><div><span class="eyebrow">A CLOSER LOOK</span><h2>See how the UV/PAA treatment start.</h2><a class="text-button" href="https://www.youtube.com/watch?v=JmRpOETxPA8" target="_blank" rel="noreferrer">Open video on YouTube ↗</a></div><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/JmRpOETxPA8" title="A short video about wastewater treatment" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></div>
+          <div class="chapter-summary"><span>CHAPTER SUMMARY</span><p>PAA differs from ethanoic acid because it contains one additional oxygen atom and a peroxide bond. This peroxide bond gives PAA stronger oxidative properties and makes it useful in wastewater treatment.</p></div>
+        </section>
+
+        <section class="chapter" id="chapter-3" aria-labelledby="title-3" data-kicker="LIGHT + REACTION">
+          <div class="chapter-heading"><p class="eyebrow"><span class="eyebrow-index">03</span> MAKE THE OXIDANT ACTIVE</p><h1 id="title-3">Switch on<br><em>the light.</em></h1><p class="dek">UV/PAA treatment is an Advanced Oxidation Process. UV light supplies energy that activates PAA molecules. Activated PAA molecules break apart and generate radicals.<br><br>Radicals are highly reactive atoms or molecules that contain an unpaired electron. Because radicals are unstable, they quickly react with nearby substances, including pollutants in wastewater.</p></div>
+          <div class="chapter-figures chapter-figures-1" aria-label="Chapter 3 illustration">
+            <figure><button class="image-open" type="button" data-image="IMG-06" aria-label="Open illustration IMG-06: UV light activates PAA"><img src="assets/IMG-06.png" alt="Ultraviolet light reaches peracetic acid, splits its weak peroxide bond, and forms reactive radicals."></button><figcaption><span>FIG. 06</span> UV energy opens a reaction pathway.</figcaption></figure>
+          </div>
+          <section class="game-card game-reactor" aria-labelledby="game3-title">
+            <div class="game-heading"><span class="game-tag">GAME-03 <span aria-hidden="true">✳</span> ACTIVATE &amp; AIM</span><span class="game-count" id="game3-timer">READY WHEN YOU ARE</span></div>
+            <h2 id="game3-title">Can you guide the reaction?</h2><p class="game-instructions">Start the reactor, then drag UV photons onto all three PAA molecules. Next, drag the radicals formed onto all three pollutant targets before the 35-second timer ends.</p>
+            <div class="reactor-layout"><div class="reactor-arena"><svg id="reactor-svg" viewBox="0 0 720 300" role="group" aria-label="Reactor chamber. Drag UV onto PAA molecules, then click or drag the radicals formed on PAA onto pollutant targets."><defs><radialGradient id="reactor-glow"><stop stop-color="#cbd9e8" stop-opacity=".32"/><stop offset="1" stop-color="#718eae" stop-opacity="0"/></radialGradient></defs><rect width="720" height="300" rx="10" fill="#202c3b"/><circle cx="360" cy="145" r="195" fill="url(#reactor-glow)"/><path d="M0 250 Q150 230 300 250 T720 250" fill="none" stroke="#8192a7" stroke-opacity=".3"/><text x="22" y="30" class="reactor-label">UV / PAA REACTOR</text><g id="uv-tool" class="uv-tool" tabindex="0" role="button" aria-label="UV photon. Drag onto an inactive PAA molecule." draggable="true" transform="translate(72 82)"><circle r="23"/><path d="M-12 0h24M0-12v24M-8-8l16 16M8-8L-8 8"/><text x="0" y="39" text-anchor="middle">UV</text></g><g class="reactor-target paa-target" data-target="paa-1" tabindex="-1" role="button" aria-label="PAA molecule 1, inactive" transform="translate(170 130)"><circle r="35" class="target-halo"/><circle r="23" class="paa-core"/><text x="0" y="5" text-anchor="middle">PAA</text></g><g class="reactor-target paa-target" data-target="paa-2" tabindex="-1" role="button" aria-label="PAA molecule 2, inactive" transform="translate(340 105)"><circle r="35" class="target-halo"/><circle r="23" class="paa-core"/><text x="0" y="5" text-anchor="middle">PAA</text></g><g class="reactor-target paa-target" data-target="paa-3" tabindex="-1" role="button" aria-label="PAA molecule 3, inactive" transform="translate(510 140)"><circle r="35" class="target-halo"/><circle r="23" class="paa-core"/><text x="0" y="5" text-anchor="middle">PAA</text></g><g class="reactor-target pollutant-target" data-target="pollutant-1" tabindex="-1" role="button" aria-label="Pollutant target 1, intact" transform="translate(215 215)"><rect x="-39" y="-16" width="78" height="32" rx="14"/><text x="0" y="4" text-anchor="middle">pollutants</text></g><g class="reactor-target pollutant-target" data-target="pollutant-2" tabindex="-1" role="button" aria-label="Pollutant target 2, intact" transform="translate(360 235)"><rect x="-39" y="-16" width="78" height="32" rx="14"/><text x="0" y="4" text-anchor="middle">pollutants</text></g><g class="reactor-target pollutant-target" data-target="pollutant-3" tabindex="-1" role="button" aria-label="Pollutant target 3, intact" transform="translate(505 220)"><rect x="-39" y="-16" width="78" height="32" rx="14"/><text x="0" y="4" text-anchor="middle">pollutants</text></g><path id="reactor-beam" class="reactor-beam" d="M0 0 L0 0"/><text x="22" y="289" class="reactor-label">DRAG RADICALS FROM PAA</text><g id="reactor-radicals" aria-label="Available radicals"></g></svg><p id="game3-success" class="game3-success" aria-live="assertive" hidden>success!</p><div class="arena-caption"><span id="reactor-phase">The reactor is waiting.</span><span id="reactor-hits">PAA 0/3 · TARGETS 0/3 · RADICALS 0</span></div></div><div class="reactor-controls"><p class="mini-label">CONTROL PANEL</p><button type="button" class="reactor-button primary-action" id="reactor-start">Start reactor <span>→</span></button><p id="game3-feedback" class="reactor-feedback" aria-live="polite">Start the reactor, then drag UV photons to PAA molecules.</p><button type="button" class="text-button light-button" id="reactor-reset">↺ Reset reactor</button></div></div>
+          </section>
+          <div class="chapter-summary"><span>CHAPTER SUMMARY</span><p>UV light activates PAA and generates radicals. These radicals are responsible for pollutant oxidation during UV/PAA treatment.</p></div>
+        </section>
+
+        <section class="chapter" id="chapter-4" aria-labelledby="title-4" data-kicker="THE COMPETITION">
+          <div class="chapter-heading"><p class="eyebrow"><span class="eyebrow-index">04</span> NOT EVERY RADICAL FINDS A POLLUTANT</p><h1 id="title-4">A competition<br><em>for radicals.</em></h1><p class="dek">Radicals and oxidants are limited resources. Both pollutants and dissolved organic matter can consume them. Therefore, competition occurs between DOM and pollutants, influencing treatment efficiency.</p></div>
+          <div class="chapter-figures chapter-figures-3" role="region" aria-label="Chapter 4 illustrations; scroll horizontally to view each image" tabindex="0">
+            <figure><button class="image-open" type="button" data-image="IMG-07" aria-label="Open illustration IMG-07: DOM and pollutants compete for radicals"><img src="assets/IMG-07.png" alt="DOM and target pollutants compete for a limited pool of reactive radicals."></button><figcaption><span>FIG. 07</span> DOM and pollutants compete for radicals.</figcaption></figure>
+            <figure><button class="image-open" type="button" data-image="IMG-08" aria-label="Open illustration IMG-08: low DOM allows more radicals to remove pollutants"><img src="assets/IMG-08.png" alt="Low DOM scenario: more radicals remain available to oxidize pollutants in UV/PAA treatment."></button><figcaption><span>FIG. 08</span> Low DOM: more radicals reach pollutants</figcaption></figure>
+            <figure><button class="image-open" type="button" data-image="IMG-09" aria-label="Open illustration IMG-09: high DOM leaves fewer radicals for pollutant removal"><img src="assets/IMG-09.png" alt="High DOM scenario: DOM molecules consume radicals, leaving fewer available to attack target pollutants."></button><figcaption><span>FIG. 09</span> High DOM: fewer radicals reach pollutants</figcaption></figure>
+          </div>
+          <section class="game-card" aria-labelledby="game4-title"><div class="game-heading"><span class="game-tag">GAME-04 <span aria-hidden="true">✳</span> TUNE THE TREATMENT</span><span class="game-count">TRY A DIFFERENT MIX</span></div><h2 id="game4-title">Can you remove &gt; 80% of pollutants?</h2><p class="game-instructions">Set DOM, PAA, and UV from 0 to 100, then run the simulation. The simplified model shows how DOM competes for oxidants while PAA and UV increase their availability. Experiment to reach 80% removal.</p><div class="simulation-layout"><div class="slider-panel"><label class="range-control" for="dom-slider"><span><strong>DOM concentration</strong><output id="dom-value" for="dom-slider">50</output></span><input id="dom-slider" type="range" min="0" max="100" value="50"><span class="range-ends"><span>LOW</span><span>HIGH</span></span></label><label class="range-control" for="paa-slider"><span><strong>PAA dose</strong><output id="paa-value" for="paa-slider">50</output></span><input id="paa-slider" type="range" min="0" max="100" value="50"><span class="range-ends"><span>LOW</span><span>HIGH</span></span></label><label class="range-control" for="uv-slider"><span><strong>UV intensity</strong><output id="uv-value" for="uv-slider">50</output></span><input id="uv-slider" type="range" min="0" max="100" value="50"><span class="range-ends"><span>LOW</span><span>HIGH</span></span></label><button type="button" id="run-simulation" class="primary-button">Run simulation <span>→</span></button><p class="model-note">Illustrative model: removal = (1 − DOM/100) × (PAA/100) × (UV/100) × 100. Real treatment depends on many additional water-chemistry and reactor conditions.</p></div><div class="simulation-result" aria-live="polite"><p class="mini-label">ESTIMATED POLLUTANT REMOVAL</p><div class="result-circle"><div><strong id="removal-value">—</strong><span>%</span></div></div><div class="result-meter" role="progressbar" aria-label="Estimated pollutant removal" aria-valuemin="0" aria-valuemax="100"><span id="result-fill"></span></div><p class="result-status" id="simulation-feedback">Adjust the sliders and run your first test.</p></div></div></section>
+          <div class="chapter-summary"><span>CHAPTER SUMMARY</span><p>DOM competes with pollutants for oxidants. High DOM concentrations generally reduce pollutant-removal efficiency.</p></div>
+        </section>
+
+        <section class="chapter" id="chapter-5" aria-labelledby="title-5" data-kicker="THE TRANSFORMATION">
+          <div class="chapter-heading"><p class="eyebrow"><span class="eyebrow-index">05</span> CHANGE IS NOT THE SAME AS DISAPPEARANCE</p><h1 id="title-5">DOM changes<br><em>shape.</em></h1><p class="dek">Dissolved Organic Matter (DOM) molecules do not disapeear after reacting with radicals. Instead, they transform into other substances through oxygen addition and decarboxylation.</p></div>
+          <div class="chapter-figures chapter-figures-4" role="region" aria-label="Chapter 5 illustrations; scroll horizontally to view each image" tabindex="0">
+            <figure><button class="image-open" type="button" data-image="IMG-10" aria-label="Open illustration IMG-10: oxygen addition pathway"><img src="assets/IMG-10.png" alt="Reactive radicals add oxygen to DOM particles, making them more oxygenated and often more polar and hydrophilic."></button><figcaption><span>FIG. 10</span> Oxygen addition pathway</figcaption></figure>
+            <figure><button class="image-open" type="button" data-image="IMG-11" aria-label="Open illustration IMG-11: decarboxylation releases carbon dioxide"><img src="assets/IMG-11.png" alt="Decarboxylation removes a carboxyl group from DOM and releases carbon dioxide."></button><figcaption><span>FIG. 11</span> Decarboxylation releases CO₂</figcaption></figure>
+            <figure><button class="image-open" type="button" data-image="IMG-12" aria-label="Open illustration IMG-12: structural simplification of DOM"><img src="assets/IMG-12.png" alt="UV/PAA treatment breaks large, complex DOM structures into smaller, simpler molecules."></button><figcaption><span>FIG. 12</span> Structural simplification of DOM</figcaption></figure>
+            <figure><button class="image-open" type="button" data-image="IMG-13" aria-label="Open illustration IMG-13: compare DOM composition before and after treatment"><img src="assets/IMG-13.png" alt="Before-and-after comparison showing DOM becomes more oxygenated, simpler, and smaller after UV/PAA treatment."></button><figcaption><span>FIG. 13</span> DOM composition changes through treatment.</figcaption></figure>
+          </div>
+          <section class="game-card" aria-labelledby="game5-title"><div class="game-heading"><span class="game-tag">GAME-05 <span aria-hidden="true">✳</span> READ THE REACTION</span><span class="game-count">NAME THAT TRANSFORMATION</span></div><h2 id="game5-title">What reaction does this DOM undergo?</h2><p class="game-instructions">A model reaction turns p-hydroxybenzoic acid into phenol and carbon dioxide. The carbon in CO₂ comes from the reactant’s carboxyl group. Which kind of reaction describes the loss of that group?</p><div class="reaction-card"><div class="reaction-equation"><span class="chemical-name">p-hydroxybenzoic acid<small>HO–C₆H₄–COOH</small></span><span class="reaction-arrow" aria-hidden="true">→</span><span class="chemical-name">phenol<small>C₆H₅–OH</small></span><span class="plus-sign">+</span><span class="chemical-name co2-name">carbon dioxide<small>CO₂</small></span></div><div class="reaction-choices" role="group" aria-label="Choose the reaction type"><button type="button" data-reaction="oxygen addition">Oxygen addition</button><button type="button" data-reaction="decarboxylation">Decarboxylation</button><button type="button" data-reaction="neutralization">neutralization</button><button type="button" data-reaction="none">None of above</button></div><p class="game-feedback" id="game5-feedback" aria-live="polite">Select the transformation you see.</p></div></section>
+          <div class="chapter-summary"><span>CHAPTER SUMMARY</span><p>UV/PAA treatment changes DOM chemistry through oxygen addition and decarboxylation. These reactions produce new DOM structures and alter DOM composition.</p></div>
+        </section>
+
+        <section class="chapter" id="chapter-6" aria-labelledby="title-6" data-kicker="THE WHOLE STORY">
+          <div class="chapter-heading"><p class="eyebrow"><span class="eyebrow-index">06</span> ONE PROCESS, MANY CHANGES</p><h1 id="title-6">Put the story<br><em>together.</em></h1><p class="dek">Wastewater contain pollutants and dissolved organic matter (DOM). Peracetic Acid (PAA) is a strong oxidant that is used in wastewater treatment. In UV/PAA, PAA fragments into radicals, which could remove pollutants, under UV light. However, DOM could also react with radicals through oxygen addition and decarboxylation to form undesired products that might worsen the water quality. It means that DOM would compete with pollutants for the radicals, reducing the efficiency of pollutant removal.</p></div>
+          <div class="chapter-figures chapter-figures-1" aria-label="Chapter 6 illustration">
+            <figure><button class="image-open" type="button" data-image="IMG-14" aria-label="Open illustration IMG-14: the complete UV/PAA treatment process"><img src="assets/IMG-14.png" alt="The complete UV/PAA treatment journey from wastewater influent through peracetic acid addition, UV activation, radical formation, pollutant oxidation, DOM transformation, and treated water."></button><figcaption><span>FIG. 14</span> The whole treatment story, in one view.</figcaption></figure>
+          </div>
+          <section class="game-card quiz-card" aria-labelledby="game6-title"><div class="game-heading"><span class="game-tag">GAME-06 <span aria-hidden="true">✳</span> FINAL KNOWLEDGE CHECK</span><span class="game-count" id="quiz-progress">0 OF 5 ANSWERED</span></div><h2 id="game6-title">Can you explain the whole process?</h2><p class="game-instructions">Answer the five questions below as you scroll. Your score updates as you answer.</p><div id="quiz-area" class="quiz-area"></div><p id="quiz-feedback" class="game-feedback" aria-live="polite">Choose one answer for each question.</p><button id="quiz-reset" class="text-button quiz-reset" type="button" hidden>↺ Retake the quiz</button></section>
+          <div class="chapter-summary final-summary"><span>CHAPTER SUMMARY</span><p>Thank you for joining this learning workshop.</p></div>
+        </section>
+
+        <footer class="chapter-footer"><button type="button" id="previous-chapter" class="chapter-step" disabled><span>←</span><span><small>PREVIOUS</small><strong>Start here</strong></span></button><span id="footer-progress">01 — 06</span><button type="button" id="next-chapter" class="chapter-step next-step"><span><small>NEXT CHAPTER</small><strong>What is in wastewater?</strong></span><span>→</span></button></footer>
+      </main>
+    </div>
+
+    <dialog id="image-lightbox" class="image-lightbox" aria-labelledby="lightbox-title" aria-describedby="lightbox-caption"><div class="lightbox-content"><button type="button" class="lightbox-close" aria-label="Close illustration">×</button><p class="eyebrow" id="lightbox-title">ILLUSTRATION</p><img id="lightbox-image" alt=""><p id="lightbox-caption" class="lightbox-caption"></p></div></dialog>
+  </body>
+</html>
