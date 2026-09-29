@@ -822,7 +822,7 @@ const quizQuestions = [
   },
   {
     question: "What are radicals?",
-    answers: ["Stable molecules", "Highly unstable species that formed under UV attack", "Pollutants", "DOM"],
+    answers: ["Stable molecules", "Highly reactive atoms or molecules that contain an unpaired electron", "Pollutants", "DOM"],
     correct: 1,
   },
   {
