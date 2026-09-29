@@ -792,6 +792,14 @@ const sliders = {
   paa: document.querySelector("#paa-slider"),
   uv: document.querySelector("#uv-slider"),
 };
+Object.entries(sliders).forEach(([name, slider]) => {
+  slider.value = "50";
+  document.querySelector(`#${name}-value`).value = "50";
+});
+document.querySelector("#removal-value").textContent = "—";
+document.querySelector("#result-fill").style.width = "0%";
+document.querySelector(".result-meter").removeAttribute("aria-valuenow");
+setFeedback(document.querySelector("#simulation-feedback"), "Adjust the sliders and run your first test.");
 Object.entries(sliders).forEach(([name, slider]) => slider.addEventListener("input", () => {
   document.querySelector(`#${name}-value`).value = slider.value;
   const feedback = document.querySelector("#simulation-feedback");

@@ -75,6 +75,7 @@ main { min-width: 0; padding: 0 clamp(28px, 6vw, 100px) 35px; }
 h1, h2, p, figure { margin-top: 0; }
 h1 { margin-bottom: 18px; font-family: var(--serif); font-size: clamp(69px, 9.6vw, 121.5px); font-weight: 400; letter-spacing: -.055em; line-height: .95; }
 h1 em { color: var(--green); font-weight: 400; }
+#title-4 { line-height: 1.2; }
 .dek { max-width: none; margin-bottom: 0; color: #79837b; font-family: var(--serif); font-size: clamp(25.5px, 3.3vw, 31.5px); line-height: 1.45; }
 .chapter-heading .dek + .dek { margin-top: 1em; }
 .feature-grid { display: grid; grid-template-columns: minmax(260px, .95fr) minmax(300px, 1.05fr); gap: clamp(28px, 5vw, 70px); align-items: start; }
