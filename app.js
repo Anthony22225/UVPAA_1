@@ -213,17 +213,18 @@ function resetMolecule() {
   moleculeGroupSelection.clear();
   selectedAtom = null;
   selectedBondIndex = null;
-  armedAtom = null;
+  clearArmedAtom();
   markingGroup = false;
   document.querySelector("#mark-group").setAttribute("aria-pressed", "false");
   document.querySelector("#mark-group").disabled = true;
   document.querySelector("#game2-success").hidden = true;
   renderMolecule();
-  setFeedback(moleculeFeedback, "Drag 2 carbon, 3 oxygen, and 4 hydrogen atoms into the boxes.");
+  setFeedback(moleculeFeedback, "Tap an atom, then tap a box to place it.");
 }
 
 function placeAtom(index, element) {
   if (!["C", "O", "H"].includes(element) || index < 0 || index >= moleculeAtoms.length) return;
+  clearArmedAtom();
   if (element !== targetMolecule.atoms[index]) {
     setFeedback(moleculeFeedback, "Try a different atom", "error");
     return;
@@ -450,16 +451,34 @@ function checkMoleculeGroup() {
   }
 }
 
+function clearArmedAtom() {
+  armedAtom = null;
+  document.querySelectorAll(".atom-source").forEach((source) => {
+    source.classList.remove("is-armed");
+    source.setAttribute("aria-pressed", "false");
+  });
+}
+
+function armAtom(source) {
+  armedAtom = source.dataset.atom;
+  document.querySelectorAll(".atom-source").forEach((button) => {
+    const isArmed = button === source;
+    button.classList.toggle("is-armed", isArmed);
+    button.setAttribute("aria-pressed", String(isArmed));
+  });
+  setFeedback(moleculeFeedback, `${armedAtom} selected. Tap an empty box to place it.`);
+}
+
 document.querySelectorAll(".atom-source").forEach((source) => {
   source.addEventListener("dragstart", (event) => {
     event.dataTransfer.setData("text/plain", source.dataset.atom);
     event.dataTransfer.effectAllowed = "copy";
   });
+  source.addEventListener("click", () => armAtom(source));
   source.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      armedAtom = source.dataset.atom;
-      setFeedback(moleculeFeedback, `${armedAtom} selected for keyboard placement. Focus an empty matching box and press Enter.`);
+      armAtom(source);
     }
   });
 });

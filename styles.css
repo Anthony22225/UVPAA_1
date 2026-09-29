@@ -155,6 +155,7 @@ figcaption span { color: var(--orange); font-size: 12px; }
 .atom-palette, .molecule-grid-wrap { padding: 15px; border: 1px solid #dce1d8; background: #f8f9f5; }
 .atom-buttons { display: flex; gap: 7px; }
 .atom-source { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 48px; height: 53px; border: 1px solid #93aa94; border-radius: 50%; background: #e8efe5; color: var(--green-dark); cursor: grab; font-family: var(--serif); font-size: 31.5px; }
+.atom-source.is-armed { outline: 3px solid #597895; outline-offset: 3px; }
 .atom-source small { margin-top: 2px; font-family: var(--mono); font-size: 7.5px; letter-spacing: .04em; }
 .oxygen-atom { border-color: #c3967d; background: #f2e9e1; color: #925d44; }
 .hydrogen-atom { border-color: #9d97b2; background: #eceaf2; color: #655d7d; }
