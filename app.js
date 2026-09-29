@@ -147,7 +147,7 @@ function renderSortingGame() {
   document.querySelector("#game1-progress").textContent = `${correct} / ${samples.length} sorted`;
   sortBins.forEach((bin) => bin.removeAttribute("aria-pressed"));
   if (correct === samples.length) {
-    setFeedback(sortFeedback, "Perfect sort! Natural organic matter is one of the sources of DOM while the other four are pollutants!", "success");
+    setFeedback(sortFeedback, "Perfect sort!", "success");
     completeChapter(0);
   }
 }
@@ -160,7 +160,7 @@ function assignSample(id, bin) {
   if (sample.kind === bin) {
     const correct = samples.filter((item) => sampleAssignments.get(item.id) === item.kind).length;
     setFeedback(sortFeedback, correct === samples.length
-      ? "Perfect sort! Natural organic matter is one of the sources of DOM while the other four are pollutants!"
+      ? "Perfect sort!"
       : `Correct: ${sample.label} belongs in ${bin === "dom" ? "DOM" : "target pollutants"}. ${correct} of 6 sorted correctly.`, correct === samples.length ? "success" : "");
   } else {
     setFeedback(sortFeedback, `Not quite. ${sample.label} is ${sample.kind === "dom" ? "natural dissolved organic matter" : "a target pollutant"}. Try moving it to the other bin.`, "error");
@@ -518,6 +518,11 @@ renderMolecule();
 // GAME-03: Activate PAA, use radicals on microbes, then oxidize pollutants.
 const reactorSvg = document.querySelector("#reactor-svg");
 const reactorTargets = [...reactorSvg.querySelectorAll(".reactor-target")];
+const reactorPositions = [
+  { x: 105, y: 70 }, { x: 275, y: 70 }, { x: 445, y: 70 }, { x: 615, y: 70 },
+  { x: 105, y: 185 }, { x: 275, y: 185 }, { x: 445, y: 185 }, { x: 615, y: 185 },
+  { x: 105, y: 300 }, { x: 275, y: 300 }, { x: 445, y: 300 }, { x: 615, y: 300 },
+];
 const reactorPhase = document.querySelector("#reactor-phase");
 const reactorTimer = document.querySelector("#game3-timer");
 const reactorFeedback = document.querySelector("#game3-feedback");
@@ -560,6 +565,18 @@ function stopReactor(message, won) {
 
 function updateReactorCounts() {
   reactorHits.textContent = `PAA ${activatedTotal}/6 · MICROBES ${microbeHits}/3 · POLLUTANTS ${hitTotal}/3 · RADICALS ${radicalCount}`;
+}
+
+function randomizeReactorTargets() {
+  const positions = [...reactorPositions];
+  for (let index = positions.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [positions[index], positions[randomIndex]] = [positions[randomIndex], positions[index]];
+  }
+  reactorTargets.forEach((target, index) => {
+    const { x, y } = positions[index];
+    target.setAttribute("transform", `translate(${x} ${y})`);
+  });
 }
 
 function activatePaa(target) {
@@ -647,6 +664,7 @@ function activateFromKeyboard(target) {
 function startReactor() {
   window.clearInterval(reactorInterval);
   clearReactorEffectTimeouts();
+  randomizeReactorTargets();
   reactorTargets.forEach((target) => {
     target.classList.remove("is-selected", "is-activated", "is-activating", "is-hit", "is-consuming", "is-consumed");
     target.setAttribute("tabindex", "0");
@@ -756,6 +774,7 @@ document.querySelector("#reactor-reset").addEventListener("click", () => {
       target.setAttribute("aria-label", `Pollutant target ${target.dataset.target.at(-1)}, intact`);
     }
   });
+  randomizeReactorTargets();
   document.querySelector("#reactor-beam").classList.remove("is-on");
   document.querySelector("#reactor-start").disabled = false;
   uvTool.setAttribute("draggable", "false");
