@@ -174,10 +174,9 @@ figcaption span { color: var(--orange); font-size: 12px; }
 .remove-molecule-item:disabled { color: #a7aea6; cursor: not-allowed; text-decoration-color: transparent; }
 .molecule-grid-hint { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .molecule-grid-hint .game-feedback { flex: 1; margin: 10px 0 4px; }
-.mark-group-button { display: block; padding: 7px 0; border: 0; background: none; color: #9b694d; cursor: pointer; font-size: 20.25px; text-align: left; white-space: nowrap; }
-.mark-group-button[aria-pressed="true"] { color: var(--green-dark); font-weight: 700; }
-.mark-group-button:disabled { color: #a7aea6; cursor: not-allowed; }
 .molecule-grid-wrap { position: relative; min-width: 0; padding: 8px; }
+.molecule-grid-actions { display: flex; justify-content: flex-end; min-height: 45px; padding: 7px 0 0; }
+.molecule-grid-actions .mark-group-button { text-align: left; }
 .molecule-grid { display: block; width: 100%; min-height: 230px; border: 1px dashed #d8ddd5; background: #fbfcf9; }
 .game2-success { position: absolute; right: 18px; bottom: 56px; margin: 0; color: #527c9d; font-family: var(--serif); font-size: clamp(45px, 6vw, 66px); font-weight: 600; line-height: 1; text-transform: lowercase; }
 .grid-hint { fill: #adb5ac; font-family: var(--mono); font-size: 15px; letter-spacing: 2px; }
@@ -446,7 +445,6 @@ figcaption span { color: var(--orange); font-size: 12px; }
 .atom-palette .atom-source small { font-size: 5px; }
 .atom-palette .bond-choice { font-size: 9px; }
 .atom-palette .bond-choice span { font-size: 15px; }
-.atom-palette .molecule-controls .mark-group-button { font-size: 9px; }
 .atom-palette .molecule-controls .text-button { font-size: 10px; }
 
 .chapter-link:hover { background: #e9eef3; }

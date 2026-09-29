@@ -216,7 +216,7 @@ function resetMolecule() {
   clearArmedAtom();
   markingGroup = false;
   document.querySelector("#mark-group").setAttribute("aria-pressed", "false");
-  document.querySelector("#mark-group").disabled = true;
+  document.querySelector("#mark-group").hidden = true;
   document.querySelector("#game2-success").hidden = true;
   renderMolecule();
   setFeedback(moleculeFeedback, "Tap an atom, then tap a box to place it.");
@@ -397,11 +397,11 @@ function selectMoleculeAtom(index) {
 function validateMolecule() {
   const counts = ["C", "O", "H"].map((element) => `${moleculeAtoms.filter((atom) => atom?.element === element).length} ${element}`).join(", ");
   if (graphMatchesTarget()) {
-    document.querySelector("#mark-group").disabled = false;
+    document.querySelector("#mark-group").hidden = false;
     if (moleculeGroupSelection.size) checkMoleculeGroup();
     else setFeedback(moleculeFeedback, "The molecular graph is correct! Now mark the carbonyl carbon, both peroxide oxygens, carbonyl oxygen, and terminal hydrogen as –COOOH.", "success");
   } else {
-    document.querySelector("#mark-group").disabled = true;
+    document.querySelector("#mark-group").hidden = true;
     const placed = moleculeAtoms.filter(Boolean).length;
     const incorrectBond = moleculeBonds.some(([first, second, order]) => expectedBondOrder(first, second) !== order);
     if (incorrectBond) {
@@ -443,6 +443,7 @@ function checkMoleculeGroup() {
     && [...targetMolecule.group].every((index) => moleculeGroupSelection.has(index));
   if (exact) {
     document.querySelector("#game2-success").hidden = false;
+    document.querySelector("#mark-group").hidden = true;
     setFeedback(moleculeFeedback, "Correct! The peroxyacid group is -COOOH!", "success");
     completeChapter(1);
   } else {
@@ -511,7 +512,7 @@ document.querySelector("#mark-group").addEventListener("click", (event) => {
 });
 document.querySelector("#molecule-reset").addEventListener("click", resetMolecule);
 document.querySelector("#remove-molecule-item").addEventListener("click", removeSelectedMoleculeItem);
-document.querySelector("#mark-group").disabled = true;
+document.querySelector("#mark-group").hidden = true;
 renderMolecule();
 
 // GAME-03: Activate PAA, use radicals on microbes, then oxidize pollutants.
