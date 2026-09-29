@@ -39,7 +39,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex="0"]:focus
 .start-page { display: grid; min-height: calc(100vh - 74px); place-items: center; padding: 56px 24px 72px; }
 .start-content { width: min(100%, 900px); }
 .start-content > .eyebrow { margin-bottom: 22px; }
-.start-content h1 { max-width: 850px; margin-bottom: 20px; font-size: clamp(72px, 10.8vw, 132px); line-height: 1.02; }
+.start-content h1 { max-width: 850px; margin-bottom: 20px; font-size: clamp(48px, 7.2vw, 88px); line-height: 1.02; }
 .start-dek { max-width: 650px; margin-bottom: 38px; color: #79837b; font-family: var(--serif); font-size: clamp(27px, 3.3vw, 34.5px); line-height: 1.5; }
 .start-list-label { margin: 0 0 13px; color: var(--green); font-family: var(--mono); font-size: 13.5px; letter-spacing: .12em; }
 .start-chapters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 44px; max-width: 760px; margin: 0 0 31px; padding: 0; list-style: none; }
@@ -76,6 +76,7 @@ h1, h2, p, figure { margin-top: 0; }
 h1 { margin-bottom: 18px; font-family: var(--serif); font-size: clamp(69px, 9.6vw, 121.5px); font-weight: 400; letter-spacing: -.055em; line-height: .95; }
 h1 em { color: var(--green); font-weight: 400; }
 .dek { max-width: 540px; margin-bottom: 0; color: #79837b; font-family: var(--serif); font-size: clamp(25.5px, 3.3vw, 31.5px); line-height: 1.45; }
+.chapter-heading .dek + .dek { margin-top: 1em; }
 .feature-grid { display: grid; grid-template-columns: minmax(260px, .95fr) minmax(300px, 1.05fr); gap: clamp(28px, 5vw, 70px); align-items: start; }
 .story-copy { color: #5e6c63; font-size: 21px; line-height: 1.8; }
 .story-copy p { margin-bottom: 18px; }
@@ -121,6 +122,8 @@ figcaption span { color: var(--orange); font-size: 12px; }
 .game-count { color: #89938a; font-size: 12px; text-align: right; }
 .game-card > h2, .game-heading + h2 { margin-bottom: 8px; color: var(--ink); font-family: var(--serif); font-size: clamp(36px, 4.8vw, 51px); font-weight: 400; letter-spacing: -.04em; }
 .game-instructions { max-width: 730px; margin-bottom: 23px; color: #78837a; font-size: 18px; line-height: 1.7; }
+.game-instruction-list { padding-left: 1.5em; list-style: disc; }
+.game-instruction-list li + li { margin-top: .35em; }
 .sorting-game { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 14px; }
 .sample-tray, .sort-bin { min-height: 205px; padding: 15px; border: 1px solid #dce1d8; background: #f7f8f4; }
 .mini-label { margin-bottom: 13px; color: #879287; font-size: 12px; }
@@ -370,7 +373,7 @@ figcaption span { color: var(--orange); font-size: 12px; }
   .chapter-check { display: none; }
   main { padding: 0 19px 25px; }
   .start-page { min-height: calc(100vh - 62px); padding: 40px 22px 54px; }
-  .start-content h1 { font-size: clamp(64.5px, 18vw, 97.5px); }
+  .start-content h1 { font-size: clamp(43px, 12vw, 65px); }
   .start-chapters { grid-template-columns: 1fr; }
   .start-chapters li { font-size: 25.5px; }
   .page-topline { padding-top: 19px; }
