@@ -295,9 +295,8 @@ figcaption span { color: var(--orange); font-size: 12px; }
 
 .reaction-card { padding: 20px; border: 1px solid #d8e0e8; background: #f7f9fb; }
 .reaction-equation { display: flex; justify-content: center; align-items: center; gap: clamp(9px, 2vw, 24px); padding: 11px 0 24px; text-align: center; }
-.chemical-name { color: #465d73; font-family: var(--serif); font-size: clamp(19.5px, 2.55vw, 27px); }
-.chemical-name small { display: block; margin-top: 7px; color: #89938b; font-family: var(--mono); font-size: 13.5px; }
-.co2-name { color: #af6d51; }
+.chemical-formula { color: #465d73; font-family: var(--serif); font-size: clamp(19.5px, 2.55vw, 27px); white-space: nowrap; }
+.co2-formula { color: #af6d51; }
 .reaction-arrow, .plus-sign { color: #99a7b5; font-size: 33px; }
 .reaction-choices { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .reaction-choices button { padding: 9px 13px; border: 1px solid #d3dce5; background: transparent; color: #607286; cursor: pointer; font-size: 15px; }
@@ -410,8 +409,7 @@ figcaption span { color: var(--orange); font-size: 12px; }
   .simulation-result { min-height: 240px; }
   .reaction-card { padding: 14px 9px; }
   .reaction-equation { gap: 7px; }
-  .chemical-name { font-size: 18px; }
-  .chemical-name small { font-size: 10.5px; }
+  .chemical-formula { font-size: 18px; }
   .reaction-arrow, .plus-sign { font-size: 22.5px; }
   .chapter-summary { grid-template-columns: 1fr; gap: 9px; padding: 17px; }
   .chapter-summary p { font-size: 24px; }
