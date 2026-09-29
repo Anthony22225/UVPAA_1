@@ -514,7 +514,7 @@ document.querySelector("#remove-molecule-item").addEventListener("click", remove
 document.querySelector("#mark-group").disabled = true;
 renderMolecule();
 
-// GAME-03: Activate PAA, create radicals, then direct them to pollutants.
+// GAME-03: Activate PAA, use radicals on microbes, then oxidize pollutants.
 const reactorSvg = document.querySelector("#reactor-svg");
 const reactorTargets = [...reactorSvg.querySelectorAll(".reactor-target")];
 const reactorPhase = document.querySelector("#reactor-phase");
@@ -526,6 +526,7 @@ let reactorState = null;
 let reactorInterval = null;
 let radicalCount = 0;
 let activatedTotal = 0;
+let microbeHits = 0;
 let hitTotal = 0;
 let uvArmed = false;
 let armedRadical = null;
@@ -557,7 +558,7 @@ function stopReactor(message, won) {
 }
 
 function updateReactorCounts() {
-  reactorHits.textContent = `PAA ${activatedTotal}/3 · TARGETS ${hitTotal}/3 · RADICALS ${radicalCount}`;
+  reactorHits.textContent = `PAA ${activatedTotal}/6 · MICROBES ${microbeHits}/3 · POLLUTANTS ${hitTotal}/3 · RADICALS ${radicalCount}`;
 }
 
 function activatePaa(target) {
@@ -568,7 +569,7 @@ function activatePaa(target) {
   target.classList.add("is-activating");
   target.classList.add("is-activated");
   target.querySelector("text").textContent = "radicals";
-  target.setAttribute("aria-label", `Radicals formed from PAA molecule ${target.dataset.target.at(-1)}. Click to select or drag onto an intact pollutant.`);
+  target.setAttribute("aria-label", `Radicals formed from PAA molecule ${target.dataset.target.at(-1)}. Click to select or drag onto an intact target.`);
   target.setAttribute("draggable", "true");
   document.querySelector("#reactor-beam").classList.add("is-on");
   scheduleReactorEffect(() => {
@@ -578,46 +579,68 @@ function activatePaa(target) {
   radicalCount += 1;
   activatedTotal += 1;
   uvArmed = false;
-  if (activatedTotal === 3) {
-    reactorState = "oxidize";
-    reactorPhase.textContent = "PHASE 2 — USE RADICALS FROM PAA";
-    setFeedback(reactorFeedback, "Three PAA molecules activated! Click a radical label and then a pollutant, or drag a radical to a pollutant.");
+  if (activatedTotal === 6) {
+    reactorState = "microbes";
+    reactorPhase.textContent = "PHASE 2 — ELIMINATE MICROBES";
+    setFeedback(reactorFeedback, "Six PAA molecules activated! Use three radicals to eliminate the three microbes first.");
   } else {
     setFeedback(reactorFeedback, "UV absorbed! The O–O bond split and radicals formed. Activate the next PAA molecule.");
   }
   updateReactorCounts();
 }
 
-function hitPollutant(target, radicalSource) {
-  if (reactorState !== "oxidize" || !target.classList.contains("pollutant-target") || target.classList.contains("is-consumed")
+function hitReactionTarget(target, radicalSource) {
+  const isMicrobeStage = reactorState === "microbes";
+  const expectedTargetClass = isMicrobeStage ? "microbe-target" : "pollutant-target";
+  const targetName = isMicrobeStage ? "microbe" : "pollutant";
+  if (!["microbes", "pollutants"].includes(reactorState) || !target.classList.contains(expectedTargetClass) || target.classList.contains("is-consumed")
     || target.classList.contains("is-consuming")
     || !radicalSource?.classList.contains("is-activated") || radicalSource.classList.contains("is-consumed")) {
-    setFeedback(reactorFeedback, "Click or drag an available radical from PAA onto an intact pollutant.");
+    setFeedback(reactorFeedback, isMicrobeStage
+      ? "Use an available radical from PAA on an intact microbe."
+      : "The microbes are cleared. Use an available radical from PAA on an intact pollutant.");
     return;
   }
   target.classList.add("is-consuming");
-  target.setAttribute("aria-label", `Pollutant target ${target.dataset.target.at(-1)}, oxidized and removed`);
+  target.setAttribute("aria-label", `${targetName} target ${target.dataset.target.at(-1)}, eliminated by a radical`);
   radicalSource.classList.add("is-consumed");
   radicalCount -= 1;
-  hitTotal += 1;
+  if (isMicrobeStage) microbeHits += 1;
+  else hitTotal += 1;
   uvArmed = false;
   armedRadical = null;
   scheduleReactorEffect(() => {
     target.classList.remove("is-consuming");
     target.classList.add("is-consumed");
-  }, 520);
+  }, isMicrobeStage ? 580 : 520);
   updateReactorCounts();
-  if (hitTotal === 3) stopReactor("All pollutant targets were oxidized and removed.", true);
-  else setFeedback(reactorFeedback, "Target oxidized! Drag another radical to an intact pollutant.");
+  if (isMicrobeStage && microbeHits === 3) {
+    reactorState = "pollutants";
+    reactorPhase.textContent = "PHASE 3 — OXIDIZE POLLUTANTS";
+    setFeedback(reactorFeedback, "All three microbes are eliminated! Use the remaining three radicals on the pollutant targets.");
+  } else if (!isMicrobeStage && hitTotal === 3) {
+    stopReactor("All three microbes were eliminated and all three pollutant targets were oxidized.", true);
+  } else if (isMicrobeStage) {
+    setFeedback(reactorFeedback, "Microbe eliminated! Use another radical on an intact microbe.");
+  } else {
+    setFeedback(reactorFeedback, "Pollutant oxidized! Use another radical on an intact pollutant.");
+  }
 }
 
 function activateFromKeyboard(target) {
   if (uvArmed) activatePaa(target);
-  else if (reactorState === "oxidize" && target.classList.contains("paa-target") && target.classList.contains("is-activated")) {
+  else if (["microbes", "pollutants"].includes(reactorState) && target.classList.contains("paa-target") && target.classList.contains("is-activated")) {
     armedRadical = target;
-    setFeedback(reactorFeedback, "Radical selected. Choose a pollutant target to consume it.");
-  } else if (armedRadical && target.classList.contains("pollutant-target")) hitPollutant(target, armedRadical);
-  else setFeedback(reactorFeedback, reactorState === "activate" ? "Select the UV photon, then choose a PAA molecule." : "Select a radical formed from PAA, then choose a pollutant.");
+    setFeedback(reactorFeedback, reactorState === "microbes"
+      ? "Radical selected. Choose an intact microbe to eliminate."
+      : "Radical selected. Choose an intact pollutant to oxidize.");
+  } else if (armedRadical && target.classList.contains("microbe-target")) hitReactionTarget(target, armedRadical);
+  else if (armedRadical && target.classList.contains("pollutant-target")) hitReactionTarget(target, armedRadical);
+  else setFeedback(reactorFeedback, reactorState === "activate"
+    ? "Select the UV photon, then choose a PAA molecule."
+    : reactorState === "microbes"
+      ? "Select a radical formed from PAA, then choose an intact microbe."
+      : "Select a radical formed from PAA, then choose an intact pollutant.");
 }
 
 function startReactor() {
@@ -628,26 +651,28 @@ function startReactor() {
     target.setAttribute("tabindex", "0");
     target.removeAttribute("draggable");
     if (target.classList.contains("paa-target")) target.querySelector("text").textContent = "PAA";
+    else if (target.classList.contains("microbe-target")) target.querySelector("text").textContent = "microbes";
     else target.querySelector("text").textContent = "pollutants";
   });
   uvArmed = false;
   armedRadical = null;
   radicalCount = 0;
   activatedTotal = 0;
+  microbeHits = 0;
   hitTotal = 0;
   reactorState = "activate";
   uvTool.setAttribute("draggable", "true");
   document.querySelector("#reactor-start").disabled = true;
   document.querySelector("#game3-success").hidden = true;
-  reactorTimer.textContent = "35 SECONDS";
+  reactorTimer.textContent = "30 SECONDS";
   reactorPhase.textContent = "PHASE 1 — DRAG UV TO PAA";
-  setFeedback(reactorFeedback, "Drag the UV photon onto each PAA molecule.");
+  setFeedback(reactorFeedback, "Drag or tap the UV photon onto each of the six PAA molecules.");
   updateReactorCounts();
-  let remaining = 35;
+  let remaining = 30;
   reactorInterval = window.setInterval(() => {
     remaining -= 1;
     reactorTimer.textContent = `${remaining} SECONDS`;
-    if (remaining <= 0) stopReactor("Time ran out. Restart and aim carefully—you need three activated PAA molecules and three target hits.", false);
+    if (remaining <= 0) stopReactor("Time ran out. Restart and aim carefully: activate six PAA molecules, eliminate three microbes, and oxidize three pollutants.", false);
   }, 1000);
 }
 
@@ -689,7 +714,7 @@ reactorSvg.addEventListener("dragover", (event) => {
 });
 reactorSvg.addEventListener("dragstart", (event) => {
   const radicalSource = event.target.closest(".paa-target.is-activated");
-  if (!radicalSource || reactorState !== "oxidize") return;
+  if (!radicalSource || !["microbes", "pollutants"].includes(reactorState) || radicalSource.classList.contains("is-consumed")) return;
   event.dataTransfer.setData("text/plain", `radical:${radicalSource.dataset.target}`);
   event.dataTransfer.effectAllowed = "move";
 });
@@ -701,7 +726,7 @@ reactorSvg.addEventListener("drop", (event) => {
   if (action === "uv") activatePaa(target);
   else if (action.startsWith("radical:")) {
     const source = reactorTargets.find((item) => item.dataset.target === action.slice("radical:".length));
-    hitPollutant(target, source);
+    hitReactionTarget(target, source);
   }
 });
 document.querySelector("#reactor-reset").addEventListener("click", () => {
@@ -713,6 +738,7 @@ document.querySelector("#reactor-reset").addEventListener("click", () => {
   armedRadical = null;
   radicalCount = 0;
   activatedTotal = 0;
+  microbeHits = 0;
   hitTotal = 0;
   reactorTargets.forEach((target) => {
     target.classList.remove("is-selected", "is-activated", "is-activating", "is-hit", "is-consuming", "is-consumed");
@@ -721,6 +747,9 @@ document.querySelector("#reactor-reset").addEventListener("click", () => {
     if (target.classList.contains("paa-target")) {
       target.querySelector("text").textContent = "PAA";
       target.setAttribute("aria-label", `PAA molecule ${target.dataset.target.at(-1)}, inactive`);
+    } else if (target.classList.contains("microbe-target")) {
+      target.querySelector("text").textContent = "microbes";
+      target.setAttribute("aria-label", `Microbe ${target.dataset.target.at(-1)}, intact`);
     } else {
       target.querySelector("text").textContent = "pollutants";
       target.setAttribute("aria-label", `Pollutant target ${target.dataset.target.at(-1)}, intact`);

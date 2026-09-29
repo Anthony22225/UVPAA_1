@@ -225,6 +225,10 @@ figcaption span { color: var(--orange); font-size: 12px; }
 .paa-target.is-activated text { fill: #293e54; }
 .reactor-target.is-consumed { display: none; }
 .pollutant-target.is-consuming { transform-box: fill-box; transform-origin: center; animation: pollutant-reaction .52s ease-in forwards; pointer-events: none; }
+.microbe-target circle { fill: #91aa92; stroke: #d5e2d0; stroke-width: 2; }
+.microbe-target text { fill: #263b32; font-family: var(--mono); font-size: 9.5px; pointer-events: none; }
+.microbe-target:focus-visible circle { stroke: #eddb98; stroke-width: 4; }
+.microbe-target.is-consuming { transform-box: fill-box; transform-origin: center; animation: microbe-reaction .58s ease-in forwards; pointer-events: none; }
 .pollutant-target rect { fill: #9a8290; stroke: #d8c8d1; stroke-width: 2; }
 .pollutant-target text { fill: #302b36; font-family: var(--mono); font-size: 10.5px; pointer-events: none; }
 .pollutant-target.is-hit rect { fill: #829bb4; stroke: #cfdeeb; }
@@ -250,10 +254,16 @@ figcaption span { color: var(--orange); font-size: 12px; }
   35% { opacity: 1; transform: scale(1.18); filter: drop-shadow(0 0 9px #dcecff); }
   100% { opacity: 0; transform: scale(.45); filter: drop-shadow(0 0 12px #dcecff); }
 }
+@keyframes microbe-reaction {
+  0% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 0 #c8e5bd); }
+  35% { opacity: 1; transform: scale(1.2); filter: drop-shadow(0 0 12px #d6efb2); }
+  100% { opacity: 0; transform: scale(.12) rotate(35deg); filter: drop-shadow(0 0 16px #d6efb2); }
+}
 @media (prefers-reduced-motion: reduce) {
   .paa-target.is-activating .target-halo,
   .paa-target.is-activating .paa-core,
   .pollutant-target.is-consuming,
+  .microbe-target.is-consuming,
   .reactor-beam.is-on { animation-duration: .01ms; }
 }
 .arena-caption { display: flex; justify-content: space-between; gap: 8px; padding: 10px 3px 0; color: #aab9ae; font-family: var(--mono); font-size: 12px; letter-spacing: .05em; }
